@@ -6,7 +6,7 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($timeout, webDevTec, toastr, $scope,readJsonService) {
+    function MainController($timeout, webDevTec, toastr, $scope, $http, getJsonService) {
         var vm = this;
 
         vm.awesomeThings = [];
@@ -26,7 +26,9 @@
         //     "age": "23",
         //     "hobby": "badminton"
         // }];
-        $scope.jsonData=readJsonService.getJsonData();
+       readJsonService();
+
+       $scope.readJson=getJsonService.query();
 
         activate();
 
@@ -49,6 +51,29 @@
                 awesomeThing.rank = Math.random();
             });
         }
+
+        // function success(data){
+        //     $scope.data=data;
+        //     console.log($scope.data);
+        // }
+
+        // function error(status){
+        //     $scope.status=status;
+        // }
+
+         function readJsonService() {
+                $http.get('assets/json/repeat.json')
+                    .success(function(data) {
+                      // success(data);
+                      $scope.jsonData=data;
+                    })
+                    .error(function(data, status) {
+                       angular.log(status);
+                     //   error(status);
+                     $scope.status=status;
+                    });
+    }
+
 
     }
 })();

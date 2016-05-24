@@ -30,8 +30,14 @@
       </div>
     </div>
   </div>
-[{
+  <div>read json</div>
   <ul ng-repeat="data in jsonData">
+    <li>{{data.name}}</li>
+    <li>{{data.age}}</li>
+    <li>{{data.hobby}}</li>
+  </ul>
+  <div>read json by service</div>
+  <ul ng-repeat="data in readJson">
     <li>{{data.name}}</li>
     <li>{{data.age}}</li>
     <li>{{data.hobby}}</li>
