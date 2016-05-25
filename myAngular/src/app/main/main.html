@@ -1,46 +1,58 @@
+<nav class="navbar navbar-inverse" role="navigation">
+    <ul class="nav navbar-nav">
+        <li><a ui-sref=".header">header</a></li>
+        <li><a ui-sref=".tab1({tabId:main.tabId})">tab1</a></li>
+         <!-- <li><a ui-sref="#" ng-click="main.gotoDestination('1')">tab1</a></li> -->
+        <li><a ui-sref=".tab2">tab2</a></li>
+    </ul>
+</nav>
+
+<button class="btn btn-lg btn-success" ng-click="main.gotoDestination(main.tabCtrl)" >{{main.tabCtrl}}</button>
+<input ng-model="main.tabId">
 <div class="container">
-
-  <div>
-    <acme-navbar creation-date="main.creationDate"></acme-navbar>
-  </div>
-
-  <div class="jumbotron text-center">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">
-      <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-      Always a pleasure scaffolding your apps.
-    </p>
-    <p class="animated infinite" ng-class="main.classAnimation">
-      <button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>
-    </p>
-    <p>
-      With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
-    </p>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
-      <div class="thumbnail">
-        <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
-        <div class="caption">
-          <h3>{{ awesomeThing.title }}</h3>
-          <p>{{ awesomeThing.description }}</p>
-          <p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>
-        </div>
-      </div>
+    <div ui-view></div>
+</div>
+<div class="container">
+    <div>
+        <acme-navbar creation-date="main.creationDate"></acme-navbar>
     </div>
-  </div>
-  <div>read json</div>
-  <ul ng-repeat="data in jsonData">
-    <li>{{data.name}}</li>
-    <li>{{data.age}}</li>
-    <li>{{data.hobby}}</li>
-  </ul>
-  <div>read json by service</div>
-  <ul ng-repeat="data in readJson">
-    <li>{{data.name}}</li>
-    <li>{{data.age}}</li>
-    <li>{{data.hobby}}</li>
-  </ul>
-  <footer my-footer ></footer> 
+    <div class="jumbotron text-center">
+        <h1>'Allo, 'Allo!</h1>
+        <p class="lead">
+            <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+            <br> Always a pleasure scaffolding your apps.
+        </p>
+        <p class="animated infinite" ng-class="main.classAnimation">
+            <button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>
+        </p>
+        <p>
+            With ♥ thanks to the contributions of
+            <acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
+            <div class="thumbnail">
+                <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
+                <div class="caption">
+                    <h3>{{ awesomeThing.title }}</h3>
+                    <p>{{ awesomeThing.description }}</p>
+                    <p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>read json</div>
+    <ul ng-repeat="data in main.jsonData">
+        <li>{{data.name}}</li>
+        <li>{{data.age}}</li>
+        <li>{{data.hobby}}</li>
+    </ul>
+    <div>read json by service</div>
+    <ul ng-repeat="data in main.readJson">
+        <li>{{data.name}}</li>
+        <li>{{data.age}}</li>
+        <li>{{data.hobby}}</li>
+    </ul>
+    <footer my-footer></footer>
 </div>

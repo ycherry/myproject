@@ -1,4 +1,4 @@
-(function() {
+ (function() {
     'use strict';
 
     angular
@@ -14,8 +14,4 @@
             }
         }
     }
-
-    // function footerController($scope) {
-    //     $scope.footer = "Hello footer";
-    // }
 })();
