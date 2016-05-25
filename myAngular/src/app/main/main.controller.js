@@ -6,7 +6,7 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($timeout, webDevTec, toastr, $http, getJsonService, $state) {
+    function MainController($timeout, webDevTec, toastr, $http, $state, getJsonService) {
         var vm = this;
 
         vm.awesomeThings = [];
@@ -14,10 +14,18 @@
         vm.creationDate = 1464058054376;
         vm.showToastr = showToastr;
         vm.gotoDestination = gotoDestination;
-        vm.tabCtrl="tab1";
+        vm.tabCtrl = "tab1";
 
 
-        vm.readJson = getJsonService.query();
+        //      vm.readJson = getJsonService.query();
+        getJsonService.getJsonData(
+            function(data) { 
+                vm.readJson = data; 
+            },
+            function(status) { 
+                vm.readJson = status; 
+            });
+
 
         activate();
         readJsonService();
@@ -42,15 +50,6 @@
             });
         }
 
-        // function success(data){
-        //     $scope.data=data;
-        //     console.log($scope.data);
-        // }
-
-        // function error(status){
-        //     $scope.status=status;
-        // }
-
         function readJsonService() {
             $http.get('assets/json/repeat.json')
                 .success(function(data) {
@@ -67,14 +66,14 @@
         function gotoDestination(tabCtrl) {
             switch (tabCtrl) {
                 case 'tab1':
-                    vm.tabCtrl="tab2"
+                    vm.tabCtrl = "tab2"
                     console.log("called");
                     $state.go("home.tab1", {
                         tabId: vm.tabId
                     });
                     break;
                 case 'tab2':
-                    vm.tabCtrl="tab1"
+                    vm.tabCtrl = "tab1"
                     $state.go("home.tab2");
                     break;
             }
