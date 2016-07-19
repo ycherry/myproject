@@ -6,38 +6,50 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($timeout, webDevTec, toastr, $scope, $http, getJsonService) {
+    function MainController($timeout, webDevTec, toastr, $http, $state, getJsonService) {
         var vm = this;
 
         vm.awesomeThings = [];
         vm.classAnimation = '';
         vm.creationDate = 1464058054376;
         vm.showToastr = showToastr;
-        // $scope.jsonData = [{
-        //     "name": "aaa",
-        //     "age": "17",
-        //     "hobby": "basketball"
-        // }, {
-        //     "name": "bbb",
-        //     "age": "19",
-        //     "hobby": "football"
-        // }, {
-        //     "name": "aaa",
-        //     "age": "23",
-        //     "hobby": "badminton"
-        // }];
-       readJsonService();
+        vm.gotoDestination = gotoDestination;
+        vm.tabCtrl = "tab1";
 
-       $scope.readJson=getJsonService.query();
-       vm.ngIncludeUrl="app/components/ngIncludeTest/ng-include-test.template.html";
+
+        //      vm.readJson = getJsonService.query();
+        getJsonService.getJsonData(
+            function(data) { 
+                vm.readJson = data; 
+            },
+            function(status) { 
+                vm.readJson = status; 
+            });
+       // $scope.readJson=getJsonService.query();
+       vm.includeUrl="app/components/ngIncludeTest/ng-include-test.template.html";
        vm.name = "test parent";
        vm.purpose = "test ng-include parent";
 
        vm.obj={
         name:"object parent name"
-       }
+       };
+
+        function readJsonService() {
+            $http.get('assets/json/repeat.json')
+                .success(function(data) {
+                    // success(data);
+                    vm.jsonData = data;
+                })
+                .error(function(data, status) {
+                    vm.log(status);
+                    //   error(status);
+                    vm.status = status;
+                });
+        };
+        vm.ngRepeatArray=["one","two","three"];
 
         activate();
+        readJsonService();
 
         function activate() {
             getWebDevTec();
@@ -59,30 +71,21 @@
             });
         }
 
-        // function success(data){
-        //     $scope.data=data;
-        //     console.log($scope.data);
-        // }
-
-        // function error(status){
-        //     $scope.status=status;
-        // }
-
-         function readJsonService() {
-                $http.get('assets/json/repeat.json')
-                    .success(function(data) {
-                      // success(data);
-                      $scope.jsonData=data;
-                    })
-                    .error(function(data, status) {
-                       angular.log(status);
-                     //   error(status);
-                     $scope.status=status;
+        function gotoDestination(tabCtrl) {
+            switch (tabCtrl) {
+                case 'tab1':
+                    vm.tabCtrl = "tab2"
+                    console.log("called");
+                    $state.go("home.tab1", {
+                        tabId: vm.tabId
                     });
-    }
-
-    vm.ngRepeatArray=["one","two","three"];
-
-
+                break;
+            
+                case 'tab2':
+                    vm.tabCtrl = "tab1"
+                    $state.go("home.tab2");
+                    break;
+            }
+        }
     }
 })();
