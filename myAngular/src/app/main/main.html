@@ -3,7 +3,7 @@
   <div>
     <acme-navbar creation-date="main.creationDate"></acme-navbar>
   </div>
-
+<!-- 
   <div class="jumbotron text-center">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">
@@ -16,9 +16,9 @@
     <p>
       With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
     </p>
-  </div>
+  </div> -->
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
       <div class="thumbnail">
         <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
@@ -29,6 +29,30 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div class="row">normal name:
+  <input ng-model="main.name">
+  </div>
+  <br>
+  <div class="row">object name:
+  <input ng-model="main.obj.name">
+  </div>
+
+
+  <div ng-include="main.includeUrl">
+  </div>
+
+
+  {{jsonData}}
+  {{main.ngRepeatArray}}
+  <h3>ngRepeat:</h3>
+  <p>normal Array</p>
+  <div ng-repeat="dataArray in main.ngRepeatArray">
+    <input ng-model="dataArray">
+  </div>
+  <p>object:</p>
+  <div ng-repeat="data in jsonData">
+    <input ng-model="data.name">
   </div>
   <div>read json</div>
   <ul ng-repeat="data in jsonData">

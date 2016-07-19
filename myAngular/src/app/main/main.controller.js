@@ -29,6 +29,13 @@
        readJsonService();
 
        $scope.readJson=getJsonService.query();
+       vm.ngIncludeUrl="app/components/ngIncludeTest/ng-include-test.template.html";
+       vm.name = "test parent";
+       vm.purpose = "test ng-include parent";
+
+       vm.obj={
+        name:"object parent name"
+       }
 
         activate();
 
@@ -73,6 +80,8 @@
                      $scope.status=status;
                     });
     }
+
+    vm.ngRepeatArray=["one","two","three"];
 
 
     }

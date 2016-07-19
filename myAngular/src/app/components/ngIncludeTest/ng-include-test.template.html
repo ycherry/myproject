@@ -1,0 +1,10 @@
+<h3>ng-include? 应该是修改第一个input，main.html不会变，修改第二个会变，但是两个都变是为什么？</h3>
+<div>
+	normal name:<input ng-model="main.name">
+    <p>{{main.name}}</p>
+</div>
+<br>
+<div>
+	object name:<input ng-model="main.obj.name">
+	<p>{{main.obj.name}}</p>
+</div>
