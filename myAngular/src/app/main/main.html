@@ -62,9 +62,10 @@
   </div>
 
 
-  {{main.jsonData}}
-  {{main.ngRepeatArray}}
+ 
   <h3>ngRepeat:</h3>
+  {{main.jsonData}}<br>
+  {{main.ngRepeatArray}}
   <p>normal Array</p>
   <div ng-repeat="dataArray in main.ngRepeatArray">
     <input ng-model="dataArray">
@@ -73,6 +74,27 @@
   <div ng-repeat="data in main.jsonData">
     <input ng-model="data.name">
   </div>
+
+ 
+  <!-- {{main.testInt}}<br>
+  {{main.testString}}<br>
+  {{main.testEqualArray}}<br>
+  {{main.testEqualObjact}}<br>
+  {{main.testAtInt}}<br>
+  {{main.testAtString}}<br>
+  {{main.testAtArray}}<br>
+  {{main.testAtObject}}<br>
+  {{main.testFunction()}} -->
+   <h3>directive:为什么用@的时候显示的是字符串，用=的时候显示的是变量值(2)根据原型链规则，scope:true是普通的继承。即如果是普通类型修改值，即相当于创建了同名变量，覆盖了父scope的值，父scope上的值不会改变，为什么实现出来不是这种效果？</h3>
+   <input ng-model="main.testInt"><br>
+  <input ng-model="main.testString"><br>
+  <input ng-model="main.testEqualArray"><br>
+  <input ng-model="main.testEqualObjact"><br>
+  <input ng-model="main.testAtInt"><br>
+  <input ng-model="main.testAtString"><br>
+  <input ng-model="main.testAtArray"><br>
+  <input ng-model="main.testAtObject"><br>
+  <my-directive test-int='main.testInt' test-string='main.testString' test-at-int='testAtInt' test-at-string='main.testAtString'></my-directive>
  <!--  <div>read json</div>
   <ul ng-repeat="data in jsonData">
     <li>{{data.name}}</li>

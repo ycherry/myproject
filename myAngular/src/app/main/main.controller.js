@@ -48,6 +48,26 @@
         };
         vm.ngRepeatArray=["one","two","three"];
 
+        vm.testInt = 1;
+        vm.testString = "testEqualString1";
+        vm.testEqualArray = ["one","two","three"];
+        vm.testEqualObjact = {
+            "name":"object",
+            "purpose":"test"
+        };
+
+        vm.testAtInt = 2;
+        vm.testAtString ="testAtString1";
+        vm.testAtArray = ["four","five","six"];
+        vm.testAtObject = {
+            "name":"AtObject",
+            "purpose":"test"
+        };
+
+        vm.testFunction = function(){
+            vm.functionName = "testFunction";
+        }
+
         activate();
         readJsonService();
 
